@@ -1,0 +1,5 @@
+-Una practica de loop (supuestamente te lo da y tenes que ver si esta bien y si falta algo)
+-FOL y LD saber mas o menos para que sirve y para que se usa
+-Entender la definicion o el sentido de los Update
+-Cual es la estrategia general de los Theorem Provers
+-TODO Model Checkings
