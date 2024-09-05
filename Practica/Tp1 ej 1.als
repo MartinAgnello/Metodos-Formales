@@ -30,11 +30,13 @@ sig S8 {r: T one -> U}
 a cada U le corresponde exactamente un atomo de T*/
 --------------------------
 
-run SConMasDeUnT {one s:S, t:T | (s,t) | #t > 1}
+//run SConMasDeUnT {one s:S, t:T | (s,t) | #t > 1}
+run S {some s:S | #(s.r)=9} for 5 
+/*Para algun atomo s del conj S tq la cardinalidad de un atomo s junto a la relacion r sea 9*/
 
-run S2ConMasDeUnT{}
+run S2ConMasDeUnT{some s: S | #(s.2)=2}
 
-run S3TConMasDeUnU{}
+run S3TConMasDeUnU{some s:S | #(s.r)=3}
 
 run S4MasDeUnTConMismoU{}
 
