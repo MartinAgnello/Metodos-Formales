@@ -28,5 +28,5 @@ sig Addr extends Target {}
 */
 
 --------------------------------------------------
-
-run {} 
+run {#(Addr)=3 and #(Group)=1} for 10  
+/*voy a tener q tocar el scope */

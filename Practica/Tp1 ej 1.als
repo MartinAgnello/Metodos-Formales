@@ -10,9 +10,9 @@ sig S2 {r: one T}
 
 sig S3 {r: T -> one U}
 /*Define el conj S3, para las tuplas de los atomo de S3, cada atomo de T estara vinculado con un atomo de U, y a su vez cada atomo
-de U estara vinculado con cualquier numero de atomos de T (por defecto T tiene "set" por delante)*/
+de U estara vinculado con cualquier numero de atomos de T (por defecto T tiene "set"  0 o mas por delante)*/
 
-sig S4 {r: T lone -> U}
+sig S4 {ra: T lone -> U}
 /*Define el conj S4, para las tuplas con atomos de S4, para 0 o 1 atomos de T se vinculan con cualquier numero de atomos de U, 
 a su vez cada atomo de U estara vinculado con 0 o 1 atomos de T*/
 
@@ -31,19 +31,29 @@ a cada U le corresponde exactamente un atomo de T*/
 --------------------------
 
 //run SConMasDeUnT {one s:S, t:T | (s,t) | #t > 1}
-run S {some s:S | #(s.r)=9} for 5 
-/*Para algun atomo s del conj S tq la cardinalidad de un atomo s junto a la relacion r sea 9*/
+//run S {some s:S | #(s.r)=9} for 5 
+/*Busca una instancia donde al menos un átomo s de S tenga exactamente 9 átomos de T asociados a través de la relación r.
+Explicación de #(s.r)=9
+s.r es la relación desde el átomo s hacia los átomos de T.
+#(s.r) calcula la cantidad de átomos de T que están relacionados con el átomo s a través de la relación r.
+Entonces, #(s.r)=9 significa que para el átomo s, la relación r debe conectar con exactamente 9 átomos distintos de T.
+existe una instancia donde haya un atomo de S tq este relacionado con 9 t's.
+*/
 
-run S2ConMasDeUnT{some s: S | #(s.2)=2}
+//run S2ConMasDeUnT{some s: S2 | #(s.2)=2}
+/*Busca una instancia donde al menos un átomo s de S2 tenga exactamente 2 átomos distintos de T asociados a través de la relación r.*/
 
-run S3TConMasDeUnU{some s:S | #(s.r)=3}
+//run S3TConMasDeUnU{some s:S3 | #(s.r)=3}
 
-run S4MasDeUnTConMismoU{}
+//run S4MasDeUnTConMismoU{some t:S4 | #(t.r)=2}
+/*xq no funciona?*/
 
 run S5ConCeroT{}
 
 run S6{}
 
+run algo{#S4>0}
 run S7{}
 
+run prueba{some s:S4,u:U |#((s.ra).u)>1 } for 10
 run S8UConMasDeunT{}
