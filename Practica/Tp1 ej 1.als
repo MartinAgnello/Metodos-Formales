@@ -43,10 +43,11 @@ existe una instancia donde haya un atomo de S tq este relacionado con 9 t's.
 //run S2ConMasDeUnT{some s: S2 | #(s.2)=2}
 /*Busca una instancia donde al menos un átomo s de S2 tenga exactamente 2 átomos distintos de T asociados a través de la relación r.*/
 
-//run S3TConMasDeUnU{some s:S3 | #(s.r)=3}
+run S3TConMasDeUnU{some s:S3, u:U | #((s.r).u) = 3}  for 10
 
-//run S4MasDeUnTConMismoU{some t:S4 | #(t.r)=2}
-/*xq no funciona?*/
+/* #((s.r).u) = 3 */
+
+run prueba{some s:S4, u:U | #((s.ra).u) > 1 } for 10
 
 run S5ConCeroT{}
 
@@ -55,5 +56,5 @@ run S6{}
 run algo{#S4>0}
 run S7{}
 
-run prueba{some s:S4,u:U |#((s.ra).u)>1 } for 10
+
 run S8UConMasDeunT{}
