@@ -92,14 +92,21 @@ pred agregarChocolate[ch: Chocolate, ca1, ca2: Caja] {
 // No se garantiza explícitamente la condición de marco de que se debe conservar el tamaño 
 //cuando se intenta agregar un chocolate a una caja que no está llena. ESTA BIEN????? No tendria mucho setnido poner 
 // el ultimo precondicion
-( (ca1.tam in Chico and c2.tam in Chico) or  (ca1.tam in Mediano and c2.tam in Mediano) ) and
+
+// NOTA MARTIN: COMENTE LA SGTE LINEA XQ NO ME PARECIA Q TENGA SENTIDO PONERLE TAMAÑO A CA2 Y MAS 
+// ADELANTE CAMBIARSELO, Y AHORA FUNCIONA
+//( (ca1.tam in Chico and ca2.tam in Chico) or  (ca1.tam in Mediano and ca2.tam in Mediano) ) and
   
 
   --Postcondicion
 
     ca2.chocolates = ca1.chocolates + ch and
     ((#(ca1.chocolates)=3) implies  (ca2.tam = Mediano)) and 
-    ((#(ca1.chocolates)=5) implies  (ca2.tam = Grande))
+    ((#(ca1.chocolates)=5) implies  (ca2.tam = Grande)) and
+   //NOTA MARTIN: Agregado por mi al ver las correcciones
+   //si no se sobre paso el tamaño de la caja entonces ca2 sera del mismo tamaño que ca1
+    ((#(ca1.chocolates)<3) implies  (ca2.tam = Chico)) and
+    ((#(ca1.chocolates)<5) implies  (ca2.tam = Mediano))
 }
 
 /*
@@ -110,7 +117,6 @@ run agregarChocolate_1_E { some ch: Chocolate, ca1, ca2: Caja |
 						agregarChocolate[ch, ca1, ca2] and
 							#ca1.chocolates = 3 and ca1.tam = Chico and ca2.tam = Mediano
 } for 4
-
 /*
 caso de NO EXITO: no genera instancias ya que el tamaño de la caja es grande
 */

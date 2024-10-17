@@ -50,7 +50,7 @@ fact {all c:Caja | (c.tam in Grande) implies ((#(c.chocolates & formato.Relleno 
   // ch1 tiene que ser distinto a ch2
   ch1!=ch2 and // ESTO NO ES NECESARIO por los dos in del principio
 
- --Marco
+ --Le estamos pidiendo que haga que la caja 1 sin ch1 sea igual a la caja 2 sin ch2
   ca1.chocolates-ch1 = ca2.chocolates-ch2 and
 
   --Postcondicion

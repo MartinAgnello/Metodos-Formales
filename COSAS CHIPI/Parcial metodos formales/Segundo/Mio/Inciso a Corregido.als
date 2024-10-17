@@ -39,7 +39,8 @@ fact { all c:Caja |
 // Las cajas grandes no pueden tener mas de 3 chocolates rellenos.
 fact {all c:Caja | (c.tam in Grande) implies ((#(c.chocolates & formato.Relleno  )<4) ) }
 
-
+// NO SE HACE DE LA SGTE FORMA ya que le estaria pidiendo la cardinalidad a una comparacion booleana
+//fact {all c:Caja | (c.tam in Grande) implies ((#(c.chocolates.formato = Relleno )<4) ) }
 
 
 
