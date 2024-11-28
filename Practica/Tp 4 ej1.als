@@ -39,7 +39,8 @@ fact {all e: Estado | esValido[e]}
 /*c)Añadir hechos y/o predicados para la evolucion de los estados.
 Agregaremos el cruce del rio*/
 
-/*todos los estados menos el ultimo pueden modificarse en este orden*/
+/*todos los estados menos el ultimo pueden modificarse en este orden
+   todos los estados y sus siguientes o cruzan de oeste a este o bien de este a oeste*/
 
 fact trace{all e: Estado - ord/last| let sigEst = e.next | 
 		cruceOesteAEste[e,sigEst] or
@@ -86,6 +87,10 @@ run copado2{#Canibal = 3 and some e: Estado | e.orillaEste = Objeto} for 10
 Objeto: Es una entidad abstracta que actúa como una clase base. Todas las entidades que se encuentran en las 
 orillas o en el bote extienden de esta signatura.
 Estado: Representa una configuración del problema en un momento dado. 
+cada instancia de Estado tiene dos relaciones (orillaOeste y orillaEste), y cada una de ellas puede estar asociada 
+con cero o más instancias del conjunto Objeto
+orillaOeste: set Objeto: Implica que en la orilla oeste puede haber ningún, uno, o varios objetos asociados.
+Idem orillaEste
 
 ord/first.orillaOeste = Objeto && no first.orillaEste: Define el estado inicial del problema:
     -Todos los objetos (misioneros, caníbales y el bote) están en la orilla oeste.
